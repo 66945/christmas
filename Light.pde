@@ -1,4 +1,5 @@
 public class Light {
+  boolean blink;
   boolean lightOn;
   int countdown;
   
@@ -15,6 +16,7 @@ public class Light {
   float radius;
   
   public Light(color c_, PVector pos_, float radius_) {
+    blink = true;
     lightOn = true;
     countdown = (int) random(20, 50);
     
@@ -39,17 +41,24 @@ public class Light {
     lightOn = !lightOn;
   }
   
+  public void setLight(boolean status) {
+    lightOn = status;
+    blink = false;
+  }
+  
   public void update() {
     //Blinking light
-    countdown--;
-    
-    if(countdown == 0) {
-      toggle();
-      countdown = (int) random(20, 50);
+    if(blink && frameCount % 4 == 0) {
+      countdown--;
+      
+      if(countdown == 0) {
+        toggle();
+        countdown = (int) random(20, 50);
+      }
     }
     
     //glow flicker
-    if(lightOn) {
+    if(lightOn && frameCount % 4 == 0) {
       float newGlowWidth = glowWidth + (random(-5, 5));
       glowIncr = newGlowWidth / glowRes;
     }

@@ -12,12 +12,14 @@ public class Strand {
     
     color[] okColors = {
       color(#f53b3b),
-      color(#00ff00)
+      color(#00ff00),
+      color(#ffffff)
     };
     
     float dist = dist(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
     
     int lightNum = (int) (dist / 50);
+    
     float xIncr = (endPoint.x - startPoint.x) / lightNum;
     float yIncr = (endPoint.y - startPoint.y) / lightNum;
     
